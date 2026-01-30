@@ -91,6 +91,8 @@ There isn't anything left here, you can just keep going.
 :: Destroy it [Outcome] {"position":"2300,800","size":"100,100"}
 You grab a grenade and throw it towards the machine, destroying it in the spot. A portal opens and you can see the base, the world behind you is collapsing more and more every second you stay there.
 
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
+
 (if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
 
 They cheer and scream, they survived because of your good discipline.](else-if:$path is "rist-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
@@ -247,6 +249,8 @@ You've been chosen to command a task force named "Gamma-4", 5 strong individuals
 You and your team are equipped and ready to explore a nearby portal. 
 
 The decisions you take will have ''consequences''...
+
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
 
 [[Go inside the portal]]
 
@@ -437,6 +441,8 @@ You?
 
 :: Use control [Outcome] {"position":"2300,600","size":"100,100"}
 You grab the control and push the 'Off' button, the machine immediately shuts down and stops glowing, compressing itself into a tiny metal, you take it and bring it with you to give it to the superiors, one last portal opens directly to the base.
+
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
 
 (if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
 
