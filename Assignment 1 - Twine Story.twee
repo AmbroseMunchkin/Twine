@@ -85,7 +85,7 @@ Gamma-4-A: "Thanks for taking a reasonable decision"(set:$doubt to false)]
 There isn't anything left here, you can just keep going.
 
 [[Keep walking to the light]] 
-(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "risk-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
 
 
 :: Destroy it [Outcome] {"position":"2300,800","size":"100,100"}
@@ -95,7 +95,7 @@ You grab a grenade and throw it towards the machine, destroying it in the spot. 
 
 (if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
 
-They cheer and scream, they survived because of your good discipline.](else-if:$path is "rist-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
+They cheer and scream, they survived because of your good discipline.](else-if:$path is "risk-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
 
 Your team sees it and runs towards it, they don't want to stay any longer in this awful place. When you see them run you follow, barely crossing to the other side.](else-if:$path is "prudent")[You examine the portal to see if its safe, you realize it is safe and command the team through it.](else-if:$path is "reckless")[The team rushes to the portal leaving you behind, you follow behind. The portal closing after you cross it.
 
@@ -137,7 +137,7 @@ You grab a form that is in front of you:
 
 Number of casualties: (if:$teamNumbers is "5")[0](else-if:$teamNumbers is "4")[1](else-if:$teamNumbers is "3")[2]
 
-Decision making: (if:$path is "discipline")[Disciplined.](else-if:$path is "rist-taker")[Calculated risk-taker.](else-if:$path is "daring")[Daring](else-if:$path is "cautious")[Cautious.](else-if:$path is "prudent")[Prudent.](else-if:$path is "reckless")[Reckless.]
+Decision making: (if:$path is "discipline")[Disciplined.](else-if:$path is "risk-taker")[Calculated risk-taker.](else-if:$path is "daring")[Daring](else-if:$path is "cautious")[Cautious.](else-if:$path is "prudent")[Prudent.](else-if:$path is "reckless")[Reckless.]
 
 Fond the secret button: (if:$hasClue is true)[Yes](else-if:$hasClue is false)[No]
 
@@ -182,7 +182,7 @@ The adrenaline is slowly fading away and the pain increases, you know that there
 The team sees your decision was correct this time, their doubts on you disappearing.(set:$doubt to false)]
 
 [[Keep walking to the light]] 
-(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "risk-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
 
 
 :: Go to the forest (Disciplined) [Outcome] {"position":"1700,400","size":"100,100"}
@@ -212,7 +212,7 @@ You guide your group to the right between the rocks, the cover they give giving 
 
 In the middle of the travel you feel the land shake, you look up and see rocks falling in your direction.
 
-(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")](else-if:$path is "reckless")[You push your team toward a sturdy rock, one of your team almost trips with his own feet with how you where pushing them.(set:$path to "reckless")]
+(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "risk-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")](else-if:$path is "reckless")[You push your team toward a sturdy rock, one of your team almost trips with his own feet with how you where pushing them.(set:$path to "reckless")]
 
 Once the rocks stop falling you continue towards the objective with your team.(if:$wounded is true)[
 The adrenaline from the near death helps you keep going.]
@@ -281,7 +281,7 @@ You know its the cause of all the portals. You need to stop it from creating the
 
 (if:$path is "discipline")[Gamma-4-A:"We trust your judgment commander"
 
-The rest of the team waits for your orders.](else-if:$path is "rist-taker")[Gamma-4-A:"We trust you will consider all options"
+The rest of the team waits for your orders.](else-if:$path is "risk-taker")[Gamma-4-A:"We trust you will consider all options"
 
 The rest of the team waits for your orders.](else-if:$path is "daring")[Gamma-4-A:"Take a decision commander"
 
@@ -446,7 +446,7 @@ You grab the control and push the 'Off' button, the machine immediately shuts do
 
 (if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
 
-They cheer and scream, they survived because of your good discipline.](else-if:$path is "rist-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
+They cheer and scream, they survived because of your good discipline.](else-if:$path is "risk-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
 
 Your team sees it and runs towards it, they don't want to stay any longer in this awful place. When you see them run you follow, barely crossing to the other side.](else-if:$path is "prudent")[You examine the portal to see if its safe, you realize it is safe and command the team through it.](else-if:$path is "reckless")[The team rushes to the portal leaving you behind, you follow behind. The portal closing after you cross it.
 
