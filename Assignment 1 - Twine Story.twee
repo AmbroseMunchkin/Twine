@@ -23,7 +23,7 @@ Assignment 1 - Twine Story
 }
 
 
-:: Attack while it is distracted [Outcome] {"position":"500,400","size":"100,100"}
+:: Attack while it is distracted (Reckless) [Outcome] {"position":"500,400","size":"100,100"}
 You signal your squad to make an arrowhead formation with you at the front. With another hand movement the squad aims and shoots at the monster.
 
 With the bullets piercing through its skin, the monster turns to look at the squad, charging at them.
@@ -39,13 +39,13 @@ The rest of the team shoots to the same spot, hopping to distract the monster. B
 You need to act fast.
 
 [[Tackle the monster]]
-[[Use a granade]]
+[[Use a grenade]]
 
 (set: $path to "reckless")
 
 
-:: Climb the tree [Main-Event Done] {"position":"1500,700","size":"100,100"}
-You climb the tree (if:$wounded is true)[with difficulty, the pain is still there but you have enough adrenaline to keep going](else-if:$wounded is false)[with ease], reaching a high branch and observe your surroundings. You can see in the distance a bright light. Could that be the answer to close the portals?(if:$secondChoice is "Leave it agonizing")[The whines coming from the monster are slowing down, it seems its close to its final breaths.]
+:: Climb the tree [Main-Event] {"position":"1500,700","size":"100,100"}
+You climb the tree (if:$wounded is true)[with difficulty, the pain is still there but you have enough adrenaline to keep going](else-if:$wounded is false)[with ease], reaching a high branch and observe your surroundings. You can see in the distance a bright light. Could that be the answer to close the portals?
 
 You look around to find the best path to arrive there. You can see three posible safe paths:
 
@@ -57,9 +57,9 @@ And foward towards the clearing zone.
 
 All paths lead to the bright light.
 
-You climb down from the tree (if:$wounded is true)[carefully to not hurt yourself more and walk ]towards your group.(if:$reputation is "mid")[When you got close you heard them wispering.
+You climb down from the tree (if:$wounded is true)[carefully to not hurt yourself more and walk ]towards your group.(if:$doubt is true)[When you got close you heard them wispering.
 
-Gamma-4-B: "I don't think we can trust his judgment, he was to fast to sacrifice one of us.
+Gamma-4-B: "I don't think we can trust his judgment, look at what choices he has been taking".
 
 Gamma-4-D: "I'm not sure, maybe we could-"
 
@@ -67,9 +67,9 @@ They stop wispering when they see you close, just staring at you.]
 
 What path will you take?
 
-[[Go left]]
-[[Go foward]]
-[[Go right]] 
+[[Go to the forest (Disciplined)]]
+[[Go through the clearing (Cautious)]]
+[[Go to the rocks (Reckless)]] 
 
 
 
@@ -84,7 +84,7 @@ Gamma-4-A: "Finally a good decision"]
 
 There isn't anything left here, you can just keep going.
 
-[[Keep going]] 
+[[Keep walking to the light]] 
 
 
 :: Destroy it [Outcome Done] {"position":"2300,800","size":"100,100"}
@@ -106,7 +106,7 @@ Superior: "Follow us commander, its time you give us the mission report"
 [[Follow]]
 
 
-:: Flee, the monster is to powerful [Outcome] {"position":"600,900","size":"100,100"}
+:: Flee, the monster is to powerful (Cautious) [Outcome] {"position":"600,900","size":"100,100"}
 You signal your squad to retreat back to the portal, the monster looks way too powerful to combat it.
 
 You and your team slowly walk towards the portal, when suddenly you hear the snap of a branch close to you, you turn and see one of your teammates stepped on a broken branch.
@@ -153,15 +153,6 @@ You leave the room, the mission being a success.
 
 
 
-:: Go foward [Outcome Done] {"position":"1700,700","size":"100,100"}
-You guide your group foward to the clearing, nothing can surprise you all there.(if:$reputation is "mid")[Your team is far behind you, looking at you with caution and distrust.]
-
-You and your squad walk for a while, seeing the light closer and closer. (if:$wounded is true)[The adrenaline is slowly fading away and the pain increases, you know that there isn't that much time left before you can't keep going.]
-
-[[Keep going]] 
-(set: $thirdChoice to "Go middle")
-
-
 :: Go inside the portal [Main-Event] {"position":"300,700","size":"100,100"}
 You walk inside the portal, your team is not so far behind. The world before your eyes is full of blue plants, the sky color a nauseous green with yellow clouds. This place makes you question everything you know abour normality.
 
@@ -173,12 +164,25 @@ You turn around towards where the soldier is pointing. You see a monster roaming
 
 You have 3 options. What will you do?
 
-[[Attack while it is distracted]]
-[[Hide and wait for it to leave]]
-[[Flee, the monster is to powerful]]
+[[Attack while it is distracted (Reckless)]]
+[[Hide and wait for it to leave (Disciplined)]]
+[[Flee, the monster is to powerful (Cautious)]]
 
 
-:: Go left [Outcome Done] {"position":"1700,400","size":"100,100"}
+:: Go through the clearing (Cautious) [Outcome] {"position":"1700,700","size":"100,100"}
+You guide your group foward to the clearing, nothing can surprise you all there.(if:$doubt is true)[
+Your team is far behind you, looking at you with caution and distrust.]
+
+You and your squad walk for a while, seeing the light closer and closer. (if:$wounded is true)[
+The adrenaline is slowly fading away and the pain increases, you know that there isn't that much time left before you can't keep going.](if:$doubt is true)[
+
+The team sees your decision was correct this time, their doubts on you disappearing.(set:$doubt to false)]
+
+[[Keep walking to the light]] 
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")]
+
+
+:: Go to the forest (Disciplined) [Outcome Done] {"position":"1700,400","size":"100,100"}
 You guide your group to the forest.(if:$reputation is "mid")[Your team is far behind you, looking at you with caution and distrust.]
 
 You see animal life, "normal" looking animals.
@@ -191,20 +195,30 @@ Your team spots some deer nearby. They're staring at your team, getting closer s
 (set: $thirdChoice to "Go left")
 
 
-:: Go right [Outcome Done] {"position":"1700,900","size":"100,100"}
-You guide your group to the right between the rocks, the cover they give giving you all a sense of safety.(if:$reputation is "mid")[Your team is far behind you, looking at you with caution and distrust.]
+:: Go to the rocks (Reckless) [Outcome] {"position":"1700,900","size":"100,100"}
+You: "Lets keep going through the rocks"(if:$doubt is true)[
+
+Gamma-4-B: "I don't think this is the best decision commander"
+
+You look at the team, they have doubtful expression.
+
+You: "Lets keep going"
+
+Your team still follows, but now you know they don't trust your judgment 100%.]
+
+You guide your group to the right between the rocks, the cover they give giving you all a sense of safety.
 
 In the middle of the travel you feel the land shake, you look up and see rocks falling in your direction.
 
-You warn your squad and everyone hides behing a sturdy rock.
+(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")]
 
-Once the rocks stop falling you continue towards the objective with your team.(if:$wounded is true)[The adrenaline from the near death helps you keep going.]
+Once the rocks stop falling you continue towards the objective with your team.(if:$wounded is true)[
+The adrenaline from the near death helps you keep going.]
 
-[[Keep going]] 
-(set: $thirdChoice to "Go right")
+[[Keep walking to the light]] 
 
 
-:: Hide and wait for it to leave [Outcome] {"position":"600,700","size":"100,100"}
+:: Hide and wait for it to leave (Disciplined) [Outcome] {"position":"600,700","size":"100,100"}
 You look at the monster and decided it's too dangerous to fight it without risking your team life and the mission.
 
 You signal your team to hide in some nearby bushes, waiting for the monster to eventually leave the zone.
@@ -242,7 +256,7 @@ The decisions you take will have ''consequences''...
 (set: $path to "neutral")
 
 
-:: Investigate the monster [Outcome Done] {"position":"1300,500","size":"100,100"}
+:: Investigate the monster [Outcome] {"position":"1300,500","size":"100,100"}
 You are curious about that metal part, so with your knife you cut around it to extract it from the monster.
 
 Once its out, you see that it is some sort of control with only 2 buttons: 'On' and 'Off'.
@@ -256,7 +270,7 @@ With the investigation done, you look back again at the tree.
 (set:$hasClue to true)
 
 
-:: Keep going [Main-Event Done] {"position":"2100,700","size":"100,100"}
+:: Keep walking to the light [Main-Event Done] {"position":"2100,700","size":"100,100"}
 You finally reach the bright light, there is a machine there.
 
 You know its the cause of all the portals. You need to stop it from creating them.(if:$reputation is "high")[
@@ -277,7 +291,7 @@ An idea pops in your head, you can use it and maybe it will turn the machine off
 [[Destroy it]] 
 
 
-:: Kill it fast [Outcome] {"position":"1100,600","size":"100,100"}
+:: Kill it fast (Disciplined) [Outcome] {"position":"1100,600","size":"100,100"}
 (if:$path is "discipline")[Without thinking twice you approach the monster, using a knife you cut the monsters throat open in a single movement.
 
 The monster whines in pain for a second before finally dying, its body collapsing completely, it is for the best to not second doubt your decisions.](else-if:$path is "reckless")[Without thinking twice you approach the monster, using a knife you stab the monster in the head, blood shoots from the wound to your face. It was best to kill it fast and not risk it attacking again.
@@ -298,14 +312,16 @@ You also noticed a metal piece attached to the monsters back. You can try invest
 ][[Climb the tree]]
 
 
-:: Leave it agonizing [Outcome Done] {"position":"1100,800","size":"100,100"}
-(if:$path is "discipline")[You remember how close it was to killing one of your soldiers and decide to leave it to suffer, it doesn't deserve to have a fast death.](if:$firstChoice is "Attack" and $attackDecision is "granade")[You simply leave it there to agonize, your team isn't surprised anymore with your little care for others suffering.]
+:: Leave it agonizing (Reckless) [Outcome] {"position":"1100,800","size":"100,100"}
+(if:$path is "discipline")[You know you need to finish your mission fast, killing the monster will just slow you down.(set:$path to "risk-taker")](else-if:$path is "reckless")[You don't see the monster as a threat anymore, you ignore the monster and leave it agonizing.(set:$path to "reckless")](else-if:$path is "cautious")[You look at the monster and doubt if you should kill it, it is wounded enough to not be a threat anymore for you and your team.(set:$path to "daring")](else-if:$path is "risk-taker")[You look at the monster, it is no longer a threat and not worth any more of your time. You just turn around and walk away from it.(set:$path to "reckless")]
+
+Your team looks at you leaving the monster alive and agonizing.They are not sure anymore if you're taking the best decisions. 
 
 You look at your squad regrouping, treating their wounds and loading the weapons with ammo. Once everyone is back on their feet you look around, the monsters painful whines in the background, stopping when you see a tree tall enough to help you see around.
 
 [[Climb the tree]] 
-
-(set: $secondChoice to "Leave it agonizing")
+(set:$doubt to true)
+(set:$monsterAlive to true)
 
 
 :: Send one of your team to investigate them [Outcome Done] {"position":"1900,300","size":"100,100"}
@@ -338,7 +354,7 @@ The team has little to none trust on you now.
 
 You just command the team to move on.
 
-[[Keep going]] 
+[[Keep walking to the light]] 
 
 
 :: Tackle the monster [Outcome] {"position":"700,300","size":"100,100"}
@@ -361,7 +377,7 @@ Your team is amazed your discipline and fast thinking.
 (set:$canInvestigate to true)
 
 
-:: Use a granade [Outcome] {"position":"700,500","size":"100,100"}
+:: Use a grenade [Outcome] {"position":"700,500","size":"100,100"}
 You don't think it twice and quickly grab a granade from your belt and throw it to the monster.
 
 The granade lands right by your teammate side and explodes. A slight cloud of dust covers the area, you and your squad can't see trough it.
@@ -416,5 +432,5 @@ The rest of the team nods, they stare at you waiting for the next commands.](if:
 
 Would you end the monster suffering and kill it in an act of mercy, or leave it to agonize until it dies?
 
-[[Kill it fast]]
-[[Leave it agonizing]]
+[[Kill it fast (Disciplined)]]
+[[Leave it agonizing (Reckless)]]
