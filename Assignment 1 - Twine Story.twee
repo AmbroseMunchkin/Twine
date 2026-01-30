@@ -1,5 +1,5 @@
 :: StoryTitle
-Lab 2 - States, Variables, and Conditions
+Assignment 1 - Twine Story
 
 
 :: StoryData
@@ -23,7 +23,7 @@ Lab 2 - States, Variables, and Conditions
 }
 
 
-:: Attack [Outcome Done] {"position":"500,400","size":"100,100"}
+:: Attack while it is distracted [Outcome] {"position":"500,400","size":"100,100"}
 You signal your squad to make an arrowhead formation with you at the front. With another hand movement the squad aims and shoots at the monster.
 
 With the bullets piercing through its skin, the monster turns to look at the squad, charging at them.
@@ -41,12 +41,11 @@ You need to act fast.
 [[Tackle the monster]]
 [[Use a granade]]
 
-(set: $firstChoice to "Attack")
+(set: $path to "reckless")
 
 
 :: Climb the tree [Main-Event Done] {"position":"1500,700","size":"100,100"}
-You climb the tree (if:$wounded is true)[with difficulty, the pain is still there but you have enough adrenaline to keep going](else-if:$wounded is false)[with ease], reaching a high branch and observe your surroundings. You can see in the distance a bright light. Could that be the answer to close the portals?(if:$secondChoice is "Leave it agonizing")[
-The whines coming from the monster are slowing down, it seems its close to its final breaths.]
+You climb the tree (if:$wounded is true)[with difficulty, the pain is still there but you have enough adrenaline to keep going](else-if:$wounded is false)[with ease], reaching a high branch and observe your surroundings. You can see in the distance a bright light. Could that be the answer to close the portals?(if:$secondChoice is "Leave it agonizing")[The whines coming from the monster are slowing down, it seems its close to its final breaths.]
 
 You look around to find the best path to arrive there. You can see three posible safe paths:
 
@@ -107,20 +106,22 @@ Superior: "Follow us commander, its time you give us the mission report"
 [[Follow]]
 
 
-:: Flee [Outcome Done] {"position":"500,900","size":"100,100"}
+:: Flee, the monster is to powerful [Outcome] {"position":"600,900","size":"100,100"}
 You signal your squad to retreat back to the portal, the monster looks way too powerful to combat it.
 
 You and your team slowly walk towards the portal, when suddenly you hear the snap of a branch close to you, you turn and see one of your teammates stepped on a broken branch.
 
 Before you can think about anything else the monster sprints towards you all, attacking the closest person to it.
 
-The monsters assault is overwhelming. In a last minute effort, you throw your knife aiming at the stomach, hitting the target and making the monster retreat.
+The monsters assault is overwhelming, you room around the battle trying to find a blind spot to attack. In a last minute effort, one of the team aims at the stomach, shooting a that specific point multiple times, hurtig and making the monster retreat.
 
 The monster collapses, painful whines coming out of its mouth.
 
+The team looks at each other and then at you, they didn't saw you act against the monster, they're thinking you're either a coward or way to cautions to act quick.
+
 [[You stare at the monster]]
 
-(set: $firstChoice to "Flee")
+(set: $path to "cautious")
 (set:$canInvestigate to true)
 
 
@@ -161,8 +162,8 @@ You and your squad walk for a while, seeing the light closer and closer. (if:$wo
 (set: $thirdChoice to "Go middle")
 
 
-:: Go inside the portal [Main-Event Done] {"position":"300,700","size":"100,100"}
-You walk inside the portal, your team is not so far behind. The world before your eyes is full of blue plants, the sky color a nauseous green. This place makes you question everything you've learned about the universe.
+:: Go inside the portal [Main-Event] {"position":"300,700","size":"100,100"}
+You walk inside the portal, your team is not so far behind. The world before your eyes is full of blue plants, the sky color a nauseous green with yellow clouds. This place makes you question everything you know abour normality.
 
 You're taken away from your thoughts when one of your teammates points at a nearby clearing and talks.
 
@@ -172,9 +173,9 @@ You turn around towards where the soldier is pointing. You see a monster roaming
 
 You have 3 options. What will you do?
 
-[[Attack]]
-[[Hide]]
-[[Flee]]
+[[Attack while it is distracted]]
+[[Hide and wait for it to leave]]
+[[Flee, the monster is to powerful]]
 
 
 :: Go left [Outcome Done] {"position":"1700,400","size":"100,100"}
@@ -203,8 +204,8 @@ Once the rocks stop falling you continue towards the objective with your team.(i
 (set: $thirdChoice to "Go right")
 
 
-:: Hide [Outcome Done] {"position":"500,700","size":"100,100"}
-You look at the monster and decided it's too dangerous to fight it.
+:: Hide and wait for it to leave [Outcome] {"position":"600,700","size":"100,100"}
+You look at the monster and decided it's too dangerous to fight it without risking your team life and the mission.
 
 You signal your team to hide in some nearby bushes, waiting for the monster to eventually leave the zone.
 
@@ -220,25 +221,25 @@ The monster whines in pain and retreats, collapsing in the grass agonizingly.
 
 [[You stare at the monster]]
 
-(set: $firstChoice to "Hide")
+(set: $path to "discipline")
 (set:$canInvestigate to true)
 
 
-:: Introduction [Start Done] {"position":"100,700","size":"100,100"}
+:: Introduction [Start] {"position":"100,700","size":"100,100"}
 The world has changed. After the elite of the world experimented with multiverse, Exploration Portals have been showing up all over the world. Monsters that people had nightmares about now roaming freely in our land.
 
 You've been chosen to command a task force named "Gamma-4", 5 strong individuals being part of it. Your objective is to explore inside these portals to find a way to stop this madness.
 
 You and your team are equipped and ready to explore a nearby portal. 
 
-The decisions you take will have consequences...
+The decisions you take will have ''consequences''...
 
 [[Go inside the portal]]
 
 (set: $teamNumbers to "5")
 (set: $wounded to false)
 (set: $hasClue to false)
-(set: $reputation to "high")
+(set: $path to "neutral")
 
 
 :: Investigate the monster [Outcome Done] {"position":"1300,500","size":"100,100"}
@@ -276,10 +277,16 @@ An idea pops in your head, you can use it and maybe it will turn the machine off
 [[Destroy it]] 
 
 
-:: Kill it [Outcome Done] {"position":"1100,600","size":"100,100"}
-Without thinking twice you approach the monster, using a knife you cut the monsters throat open in a single movement.
+:: Kill it fast [Outcome] {"position":"1100,600","size":"100,100"}
+(if:$path is "discipline")[Without thinking twice you approach the monster, using a knife you cut the monsters throat open in a single movement.
 
-The monster whines in pain for a second before finally dying, its body collapsing completely.
+The monster whines in pain for a second before finally dying, its body collapsing completely, it is for the best to not second doubt your decisions.](else-if:$path is "reckless")[Without thinking twice you approach the monster, using a knife you stab the monster in the head, blood shoots from the wound to your face. It was best to kill it fast and not risk it attacking again.
+
+The monster dies inmediately.(set:$path to "risk-taker")](else-if:$path is "risk-taker")[You approach the monster, using a knife you cut the monsters throat open in a single movement.
+
+The monster whines in pain for a second before finally dying, its body collapsing completely.(set:$path to "discipline")](else-if:$path is "cautious")[You grab your knife and slowly get close to the monsters back, stabbing him in the back of the neck.
+
+The monster whines in pain for a second before finally dying, its body collapsing completely. It is for the best, you can't risk it recovering and attacking again.(set:$path to "prudent")]
 
 Your team is treating the wounds and loading the weapons. Once everyone is back on their feet you look around, finding a tree tall enough to help you see around if you climb it.(if:$canInvestigate is true)[
 
@@ -290,11 +297,9 @@ You also noticed a metal piece attached to the monsters back. You can try invest
 
 ][[Climb the tree]]
 
-(set: $secondChoice to "Kill it")
-
 
 :: Leave it agonizing [Outcome Done] {"position":"1100,800","size":"100,100"}
-(if:$firstChoice is "Attack" and $attackDecision is "tackle")[You remember how close it was to killing one of your soldiers and decide to leave it to suffer, it doesn't deserve to have a fast death.](if:$firstChoice is "Attack" and $attackDecision is "granade")[You simply leave it there to agonize, your team isn't surprised anymore with your little care for others suffering.]
+(if:$path is "discipline")[You remember how close it was to killing one of your soldiers and decide to leave it to suffer, it doesn't deserve to have a fast death.](if:$firstChoice is "Attack" and $attackDecision is "granade")[You simply leave it there to agonize, your team isn't surprised anymore with your little care for others suffering.]
 
 You look at your squad regrouping, treating their wounds and loading the weapons with ammo. Once everyone is back on their feet you look around, the monsters painful whines in the background, stopping when you see a tree tall enough to help you see around.
 
@@ -336,30 +341,32 @@ You just command the team to move on.
 [[Keep going]] 
 
 
-:: Tackle the monster [Outcome Done] {"position":"700,300","size":"100,100"}
-Without thinking it twice you sprint and tackle the monster, succesfully moving it away from your teammate.
+:: Tackle the monster [Outcome] {"position":"700,300","size":"100,100"}
+You know there isn't much time to think. With resolution you sprint and tackle the monster, succesfully moving it away from your teammate.
 
 Because you acted so sudenly your team didn't cease fire in time. A bullet hits your thigh.
 
-Your squad ceases fire and with the monster now under you, 2 soldiers run towards you and help keep the monster down, pulling a knife and stabbing the monster repeatedly in the chest area.
+Your squad ceases fire and with the monster now under you, 2 soldiers run towards you and help keep the monster down, one of them pulling a knife and stabbing the monster repeatedly in the chest area.
 
 The monster pushes the 3 of you away but doesn't get up, staying in the ground agonizing and bleeding out.
 
 The rest of the task force reunites and treats your wounds, you know you can't move fast anymore.
 
+Your team is amazed your discipline and fast thinking.
+
 [[You stare at the monster]] 
 
-(set:$attackDecision to "tackle")
+(set:$path to "risk-taker")
 (set: $wounded to true)
 (set:$canInvestigate to true)
 
 
-:: Use a granade [Outcome Done] {"position":"700,500","size":"100,100"}
-You quickly grab a granade from your belt and throw it to the monster.
+:: Use a granade [Outcome] {"position":"700,500","size":"100,100"}
+You don't think it twice and quickly grab a granade from your belt and throw it to the monster.
 
-The granade lands right by your teammate side and explodes. A slight cloud of dust covers the area, your squad can't see trough it.
+The granade lands right by your teammate side and explodes. A slight cloud of dust covers the area, you and your squad can't see trough it.
 
-Once the dust clears you and your team see the monster in the floor with multiple wounds, whinning in pain and bleeding.
+Once the dust clears you and your team see the monster in the floor with multiple wounds, whinning in pain and bleeding out.
 
 The soldier lays beside it, theres no clear sign of him being alive.
 
@@ -369,9 +376,8 @@ You?
 
 [[You stare at the monster]] 
 
-(set:$attackDecision to "granade")
 (set: $teamNumbers to "4")
-(set: $reputation to "mid")
+(set: $path to "reckless")
 (set:$canInvestigate to false)
 
 
@@ -395,20 +401,20 @@ Superior: "Follow us commander, its time you give us the mission report"
 (set:$hasMachine to true)
 
 
-:: You stare at the monster [Main-Event Done] {"position":"900,700","size":"100,100"}
+:: You stare at the monster [Main-Event] {"position":"900,700","size":"100,100"}
 The tension starts to fade away.(if:$wounded is true)[
 
 You can feel the pain in your leg when you get up.
 
 ]The monster keeps whining in the background, slowly bleeding out. You are staring at it since the battle finished, thinking on what to do next.
 
-(if:$firstChoice is "Attack" and $attackDecision is "granade")[Your team see you doubt, they're still in disbelief you sacrified one of your own to deal with the monster, they believe you will do that again if necesary, they now doubt you.](if:$firstChoice is "Attack" and $attackDecision is "tackle")[Gamma-4-C: "Thank you for saving me commander"
+(if:$path is "reckless")[Your team see you doubt, they're still in disbelief you sacrified one of your own to deal with the monster, they aren't sure if you will act reckless again.](if:$path is "risk-taker")[Gamma-4-C: "Thank you for saving me commander"
 
-The soldier looks greatful towards you.](if:$firstChoice is "Hide")[Gamma-4-C: "I didn't tought the monsters could be this clever to surprise attack us"
+The soldier looks greatful towards you, he knows you took a calculated risk to save his life.](if:$path is "discipline")[Gamma-4-C: "I didn't tought the monsters could be this clever to surprise attack us"
 
-The rest of the team nods, waiting for you to give the next commands.](if:$firstChoice is "Flee")[You walk towards the monster and retreat your knife, you know you will need it in the future.]
+The rest of the team nods, they stare at you waiting for the next commands.](if:$firstChoice is "cautious")[You walk towards the monster and retreat your knife, you know you will need it in the future.]
 
 Would you end the monster suffering and kill it in an act of mercy, or leave it to agonize until it dies?
 
-[[Kill it]]
+[[Kill it fast]]
 [[Leave it agonizing]]
