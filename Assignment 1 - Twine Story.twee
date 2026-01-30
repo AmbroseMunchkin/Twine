@@ -73,18 +73,19 @@ What path will you take?
 
 
 
-:: Command your team to shoot [Outcome Done] {"position":"1900,500","size":"100,100"}
+:: Command your team to shoot (Cautious) [Outcome] {"position":"1900,500","size":"100,100"}
 You don't think that much of it and command the task force to shoot the deers, you know that this place is dangerous and can't risk it.
 
-Your team shoots immediately and kills the deers.(if:$reputation is "mid")[
+Your team shoots immediately and kills the deers.(if:$doubt is true)[
 
 You hear one of your soldiers wisper.
 
-Gamma-4-A: "Finally a good decision"]
+Gamma-4-A: "Thanks for taking a reasonable decision"(set:$doubt to false)]
 
 There isn't anything left here, you can just keep going.
 
 [[Keep walking to the light]] 
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
 
 
 :: Destroy it [Outcome Done] {"position":"2300,800","size":"100,100"}
@@ -179,20 +180,19 @@ The adrenaline is slowly fading away and the pain increases, you know that there
 The team sees your decision was correct this time, their doubts on you disappearing.(set:$doubt to false)]
 
 [[Keep walking to the light]] 
-(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")]
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "rist-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
 
 
-:: Go to the forest (Disciplined) [Outcome Done] {"position":"1700,400","size":"100,100"}
-You guide your group to the forest.(if:$reputation is "mid")[Your team is far behind you, looking at you with caution and distrust.]
+:: Go to the forest (Disciplined) [Outcome] {"position":"1700,400","size":"100,100"}
+You guide your group to the forest.(if:$doubt is true)[Your team is far behind you, looking at you with caution and distrust.]
 
 You see animal life, "normal" looking animals.
 
 Your team spots some deer nearby. They're staring at your team, getting closer slowly, thats not a normal behaviour for wild deers and this dimension has proven you everything is hostile here.
 
-[[Send one of your team to investigate them]]
-[[Command your team to shoot]]
-
-(set: $thirdChoice to "Go left")
+[[Send one of your team to investigate them (Reckless)]]
+[[Command your team to shoot (Cautious)]]
+(if:$path is "discipline")[(set:$path to "discipline")](else-if:$path is "rist-taker")[(set:$path to "discipline")](else-if:$path is "daring")[(set:$path to "prudent")](else-if:$path is "cautious")[(set:$path to "prudent")](else-if:$path is "prudent")[(set:$path to "discipline")](else-if:$path is "reckless")[(set:$path to "risk-taker")]
 
 
 :: Go to the rocks (Reckless) [Outcome] {"position":"1700,900","size":"100,100"}
@@ -210,7 +210,7 @@ You guide your group to the right between the rocks, the cover they give giving 
 
 In the middle of the travel you feel the land shake, you look up and see rocks falling in your direction.
 
-(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")]
+(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")](else-if:$path is "reckless")[You push your team toward a sturdy rock, one of your team almost trips with his own feet with how you where pushing them.(set:$path to "reckless")]
 
 Once the rocks stop falling you continue towards the objective with your team.(if:$wounded is true)[
 The adrenaline from the near death helps you keep going.]
@@ -270,20 +270,25 @@ With the investigation done, you look back again at the tree.
 (set:$hasClue to true)
 
 
-:: Keep walking to the light [Main-Event Done] {"position":"2100,700","size":"100,100"}
+:: Keep walking to the light [Main-Event] {"position":"2100,700","size":"100,100"}
 You finally reach the bright light, there is a machine there.
 
-You know its the cause of all the portals. You need to stop it from creating them.(if:$reputation is "high")[
-Gamma-4-A: "We will follow your command"
+You know its the cause of all the portals. You need to stop it from creating them.
 
-All the team is expecting you to give the order.](else-if:$reputation is "mid")[Gamma-4-A: "I hope you know what youre doing"
+(if:$path is "discipline")[Gamma-4-A:"We trust your judgment commander"
 
-The rest of the team is looking at you with suspicion in their face](else-if:$reputation is "low")[
-Gamma-4-A: "You better destroy it, or we will take action"
+The rest of the team waits for your orders.](else-if:$path is "rist-taker")[Gamma-4-A:"We trust you will consider all options"
 
-The rest of the team looks ready to kill you in the spot if you don't act right.]
+The rest of the team waits for your orders.](else-if:$path is "daring")[Gamma-4-A:"Take a decision commander"
 
-(if:$hasClue is true)[You hear a beep coming from your belt, you look down and see the control making the sound.
+The rest of the team waits for your orders with caution.](else-if:$path is "cautious")[Gamma-4-A:"Don't hesitate commander"
+
+The rest of the team waits for your orders. Don't make them wait.](else-if:$path is "prudent")[Gamma-4-A:"We will follow you commander"
+
+The rest of the team waits for your orders.](else-if:$path is "reckless")[Gamma-4-A:"Don't risk it commander, just finish the mission"
+
+The rest of the team waits for your orders, they know how unpredictible you are.](if:$hasClue is true)[
+You hear a beep coming from your belt, you look down and see the control making the sound.
 
 An idea pops in your head, you can use it and maybe it will turn the machine off.
 
@@ -324,18 +329,50 @@ You look at your squad regrouping, treating their wounds and loading the weapons
 (set:$monsterAlive to true)
 
 
-:: Send one of your team to investigate them [Outcome Done] {"position":"1900,300","size":"100,100"}
-(if:$reputation is "high")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+:: Send one of your team to investigate them (Reckless) [Outcome] {"position":"1900,300","size":"100,100"}
+(if:$path is "discipline")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
 
 Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
 
 Everything looks peaceful until one of the deers attacks the soldier, the antlers stabbing him and comming out trough his back.
 
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
+
+You: "See? Everything is fine"
+
+As soon as you say that the deer attacks the soldier, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "reckless")](else-if:$path is "daring")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
+
+You: "I told you all that this was a good idea"
+
+The soldier tried to pet the deer, but the deer attacked him, the antlers stabbing him and comming out trough his back.
+
 The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.
 
-The soldiers turn around and look at you with resentment, it was your order that killed him, you knew that this place isn't safe.
+Gamma-4-A: "I knew we can't trust you"
 
-(set:$reputation to "mid")(set:$teamNumbers to "4")](else-if:$reputation is "mid")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+The team has little to none trust on you now.(set:$path to "reckless")](else-if:$path is "cautious")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers slowly and with caution, his hand extended towards them, one of the deer sniffs the soldier hands.
+
+Gamma-4-E: "Wow, they are actually frie-"
+
+Before he could finish the deer attacks him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "daring")](else-if:$path is "prudent")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with caution, his hand extended towards them, one of the deer sniffs the soldier hands. You watch the interaction happen in case something goes wrong.
+
+Gamma-4-E: "Wow, they are actually frie-"
+
+Before he could finish the deer attacks him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "risk-taker")](else-if:$path is "reckless")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
 
 Gamma-4-E: "I won't come close to those things"
 
@@ -349,10 +386,11 @@ The rest of the team shoots at the deers killing them. Running towards the soldi
 
 Gamma-4-A: "I knew we can't trust you"
 
-The team has little to none trust on you now.
-(set:$reputation to "low")(set:$teamNumbers to "3")]
+The team has little to none trust on you now.(set:$path to "reckless")]
 
-You just command the team to move on.
+The soldiers turn around and look at you with resentment, it was your order that killed him, you knew that this place isn't safe.
+
+You just command the team to move on. (set:$doubt to true)(if:$teamNumbers is "5")[(set:$teamNumbers to "4")](else-if:$teamNumbers is "4")[(set:$teamNumbers to "3")]
 
 [[Keep walking to the light]] 
 
