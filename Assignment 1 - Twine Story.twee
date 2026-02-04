@@ -1,0 +1,481 @@
+:: StoryTitle
+Assignment 1 - Twine Story
+
+
+:: StoryData
+{
+  "ifid": "6029A629-0693-4A73-A7DC-31BCEB551755",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Introduction",
+  "tag-colors": {
+    "Decision": "green",
+    "Event": "red",
+    "Outcome": "green",
+    "Main-Event": "blue",
+    "Endinbg": "red",
+    "Ending": "red",
+    "Start": "purple",
+    "Done": "orange",
+    "done": "yellow"
+  },
+  "zoom": 0.6
+}
+
+
+:: Attack while it is distracted (Reckless) [Outcome] {"position":"500,400","size":"100,100"}
+You signal your squad to make an arrowhead formation with you at the front. With another hand movement the squad aims and shoots at the monster.
+
+With the bullets piercing through its skin, the monster turns to look at the squad, charging at them.
+
+Bullets fly towards the monster without making significant damage to it. The monster uses the claws on its hand to cause wounds on your team, catching Gamma-4-C with his huge hand and slaming him against the ground.
+
+The monster lowers its head to bite the soldier head off.
+
+Gamma-4-C: "Kill it! KILL IT!"
+
+The rest of the team shoots to the same spot, hopping to distract the monster. But it isn't enough, the monster focused on the soldier.
+
+You need to act fast.
+
+[[Tackle the monster]]
+[[Use a grenade]]
+
+(set: $path to "reckless")
+
+
+:: Climb the tree [Main-Event] {"position":"1500,700","size":"100,100"}
+You climb the tree (if:$wounded is true)[with difficulty, the pain is still there but you have enough adrenaline to keep going](else-if:$wounded is false)[with ease], reaching a high branch and observe your surroundings. You can see in the distance a bright light. Could that be the answer to close the portals?
+
+You look around to find the best path to arrive there. You can see three posible safe paths:
+
+The right path is between rocks that give cover but could be hidding something in between them.
+
+To the left is the forest with tall trees giving shadow from the sun.
+
+And foward towards the clearing zone. 
+
+All paths lead to the bright light.
+
+You climb down from the tree (if:$wounded is true)[carefully to not hurt yourself more and walk ]towards your group.(if:$doubt is true)[When you got close you heard them wispering.
+
+Gamma-4-B: "I don't think we can trust his judgment, look at what choices he has been taking".
+
+Gamma-4-D: "I'm not sure, maybe we could-"
+
+They stop wispering when they see you close, just staring at you.]
+
+What path will you take?
+
+[[Go to the forest (Disciplined)]]
+[[Go through the clearing (Cautious)]]
+[[Go to the rocks (Reckless)]] 
+
+
+
+:: Command your team to shoot (Cautious) [Outcome] {"position":"1900,500","size":"100,100"}
+You don't think that much of it and command the task force to shoot the deers, you know that this place is dangerous and can't risk it.
+
+Your team shoots immediately and kills the deers.(if:$doubt is true)[
+
+You hear one of your soldiers wisper.
+
+Gamma-4-A: "Thanks for taking a reasonable decision"(set:$doubt to false)]
+
+There isn't anything left here, you can just keep going.
+
+[[Keep walking to the light]] 
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "risk-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
+
+
+:: Destroy it [Outcome] {"position":"2300,800","size":"100,100"}
+You grab a grenade and throw it towards the machine, destroying it in the spot. A portal opens and you can see the base, the world behind you is collapsing more and more every second you stay there.
+
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
+
+(if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
+
+They cheer and scream, they survived because of your good discipline.](else-if:$path is "risk-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
+
+Your team sees it and runs towards it, they don't want to stay any longer in this awful place. When you see them run you follow, barely crossing to the other side.](else-if:$path is "prudent")[You examine the portal to see if its safe, you realize it is safe and command the team through it.](else-if:$path is "reckless")[The team rushes to the portal leaving you behind, you follow behind. The portal closing after you cross it.
+
+The team looks at you with resentment, you know they will never forgive you with how reckless you acted.](if:$wounded is true)[
+You walk away slowly to the base infirmary to get the wound treated correctly before giving your report.
+
+Once you get medicine and a clean bandage you walk back to the team to meet with the superiors.]
+
+Superior: "Follow us commander, its time you give us the mission report"
+
+[[Follow]]
+
+
+:: Flee, the monster is to powerful (Cautious) [Outcome] {"position":"600,900","size":"100,100"}
+You signal your squad to retreat back to the portal, the monster looks way too powerful to combat it.
+
+You and your team slowly walk towards the portal, when suddenly you hear the snap of a branch close to you, you turn and see one of your teammates stepped on a broken branch.
+
+Before you can think about anything else the monster sprints towards you all, attacking the closest person to it.
+
+The monsters assault is overwhelming, you room around the battle trying to find a blind spot to attack. In a last minute effort, one of the team aims at the stomach, shooting a that specific point multiple times, hurtig and making the monster retreat.
+
+The monster collapses, painful whines coming out of its mouth.
+
+The team looks at each other and then at you, they didn't saw you act against the monster, they're thinking you're either a coward or way to cautions to act quick.
+
+[[You stare at the monster]]
+
+(set: $path to "cautious")
+(set:$canInvestigate to true)
+
+
+:: Follow [Ending] {"position":"2500,700","size":"100,100"}
+You enter a room, sitting in one of the chairs in front of your superiors.
+
+You: "Commander of the Gamma-4 task force here to give my report"
+
+You grab a form that is in front of you:
+
+Number of casualties: (if:$teamNumbers is "5")[0](else-if:$teamNumbers is "4")[1](else-if:$teamNumbers is "3")[2]
+
+Decision making: (if:$path is "discipline")[Disciplined.](else-if:$path is "risk-taker")[Calculated risk-taker.](else-if:$path is "daring")[Daring](else-if:$path is "cautious")[Cautious.](else-if:$path is "prudent")[Prudent.](else-if:$path is "reckless")[Reckless.]
+
+Fond the secret button: (if:$hasClue is true)[Yes](else-if:$hasClue is false)[No]
+
+Superior: "Good job commander, you can now rest"(if:$hasMachine is true)[
+
+You: "Before i go, i have this"
+
+You give them the machine, they immedietely recognize what it is.
+
+Superior: "Excelent job, you will get a rise for bringing it back in one piece. You're dismissed.]
+
+You leave the room, the mission being a success.
+
+
+(text-colour:red)[''THE END'']
+
+
+
+:: Go inside the portal [Main-Event] {"position":"300,700","size":"100,100"}
+You walk inside the portal, your team is not so far behind. The world before your eyes is full of blue plants, the sky color a nauseous green with yellow clouds. This place makes you question everything you know abour normality.
+
+You're taken away from your thoughts when one of your teammates points at a nearby clearing and talks.
+
+Gamma-4-A: "Commander, monster ahead".
+
+You turn around towards where the soldier is pointing. You see a monster roaming around, it is sniffing like it was looking for something.
+
+You have 3 options. What will you do?
+
+[[Attack while it is distracted (Reckless)]]
+[[Hide and wait for it to leave (Disciplined)]]
+[[Flee, the monster is to powerful (Cautious)]]
+
+
+:: Go through the clearing (Cautious) [Outcome] {"position":"1700,700","size":"100,100"}
+You guide your group foward to the clearing, nothing can surprise you all there.(if:$doubt is true)[
+Your team is far behind you, looking at you with caution and distrust.]
+
+You and your squad walk for a while, seeing the light closer and closer. (if:$wounded is true)[
+The adrenaline is slowly fading away and the pain increases, you know that there isn't that much time left before you can't keep going.](if:$doubt is true)[
+
+The team sees your decision was correct this time, their doubts on you disappearing.(set:$doubt to false)]
+
+[[Keep walking to the light]] 
+(if:$path is "discipline")[(set:$path to "prudent")](else-if:$path is "risk-taker")[(set:$path to "prudent")](else-if:$path is "daring")[(set:$path to "cautious")](else-if:$path is "cautious")[(set:$path to "cautious")](else-if:$path is "prudent")[(set:$path to "cautious")](else-if:$path is "reckless")[(set:$path to "daring")]
+
+
+:: Go to the forest (Disciplined) [Outcome] {"position":"1700,400","size":"100,100"}
+You guide your group to the forest.(if:$doubt is true)[Your team is far behind you, looking at you with caution and distrust.]
+
+You see animal life, "normal" looking animals.
+
+Your team spots some deer nearby. They're staring at your team, getting closer slowly, thats not a normal behaviour for wild deers and this dimension has proven you everything is hostile here.
+
+[[Send one of your team to investigate them (Reckless)]]
+[[Command your team to shoot (Cautious)]]
+(if:$path is "discipline")[(set:$path to "discipline")](else-if:$path is "rist-taker")[(set:$path to "discipline")](else-if:$path is "daring")[(set:$path to "prudent")](else-if:$path is "cautious")[(set:$path to "prudent")](else-if:$path is "prudent")[(set:$path to "discipline")](else-if:$path is "reckless")[(set:$path to "risk-taker")]
+
+
+:: Go to the rocks (Reckless) [Outcome] {"position":"1700,900","size":"100,100"}
+You: "Lets keep going through the rocks"(if:$doubt is true)[
+
+Gamma-4-B: "I don't think this is the best decision commander"
+
+You look at the team, they have doubtful expression.
+
+You: "Lets keep going"
+
+Your team still follows, but now you know they don't trust your judgment 100%.]
+
+You guide your group to the right between the rocks, the cover they give giving you all a sense of safety.
+
+In the middle of the travel you feel the land shake, you look up and see rocks falling in your direction.
+
+(if:$path is "discipline")[You signal your team to hide behind a sturdy rock.(set:$path to "risk-taker")](else-if:$path is "risk-taker")[You yell your team to take cover while you run towards a sturdy rock, the team follows you fast and hides with you.(set:$path to "reckless")](else-if:$path is "daring")[You look at the rocks and tell your team to hide between some big rocks, the falling rocks almost crush the ones you and your team where at.(set:$path to "reckless")](else-if:$path is "cautious")[You quickly tell your team to hide behing a sturdy rock.(set:$path to "daring")](else-if:$path is "prudent")[You guide your team to a nearby sturdy rock, waiting for the rocks to stop falling.(set:$path to "daring")](else-if:$path is "reckless")[You push your team toward a sturdy rock, one of your team almost trips with his own feet with how you where pushing them.(set:$path to "reckless")]
+
+Once the rocks stop falling you continue towards the objective with your team.(if:$wounded is true)[
+The adrenaline from the near death helps you keep going.]
+
+[[Keep walking to the light]] 
+
+
+:: Hide and wait for it to leave (Disciplined) [Outcome] {"position":"600,700","size":"100,100"}
+You look at the monster and decided it's too dangerous to fight it without risking your team life and the mission.
+
+You signal your team to hide in some nearby bushes, waiting for the monster to eventually leave the zone.
+
+The monster roams the clearing, sniffing, until it walks away and disappears toward some bushes.
+
+You and your team relax, when suddenly one of the teammates is attacked in the back, being thrown a couple of meters towards the clearing. You hear a roar behind you, the monster attacked by surprise.
+
+Your team shoots directly at the monster, dodging its attacks as best as they can.
+
+You find an old wound on the monsters chest and charge towards it, grabing the knife on your belt and stabbing it directly on the old wound.
+
+The monster whines in pain and retreats, collapsing in the grass agonizingly.
+
+[[You stare at the monster]]
+
+(set: $path to "discipline")
+(set:$canInvestigate to true)
+
+
+:: Introduction [Start] {"position":"100,700","size":"100,100"}
+The world has changed. After the elite of the world experimented with multiverse, Exploration Portals have been showing up all over the world. Monsters that people had nightmares about now roaming freely in our land.
+
+You've been chosen to command a task force named "Gamma-4", 5 strong individuals being part of it. Your objective is to explore inside these portals to find a way to stop this madness.
+
+You and your team are equipped and ready to explore a nearby portal. 
+
+The decisions you take will have ''consequences''...
+
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
+
+[[Go inside the portal]]
+
+(set: $teamNumbers to "5")
+(set: $wounded to false)
+(set: $hasClue to false)
+(set: $path to "neutral")
+
+
+:: Investigate the monster [Outcome] {"position":"1300,500","size":"100,100"}
+You are curious about that metal part, so with your knife you cut around it to extract it from the monster.
+
+Once its out, you see that it is some sort of control with only 2 buttons: 'On' and 'Off'.
+
+You put it in your belt, it might be useful later.
+
+With the investigation done, you look back again at the tree.
+
+[[Climb the tree]]
+
+(set:$hasClue to true)
+
+
+:: Keep walking to the light [Main-Event] {"position":"2100,700","size":"100,100"}
+You finally reach the bright light, there is a machine there.
+
+You know its the cause of all the portals. You need to stop it from creating them.
+
+(if:$path is "discipline")[Gamma-4-A:"We trust your judgment commander"
+
+The rest of the team waits for your orders.](else-if:$path is "risk-taker")[Gamma-4-A:"We trust you will consider all options"
+
+The rest of the team waits for your orders.](else-if:$path is "daring")[Gamma-4-A:"Take a decision commander"
+
+The rest of the team waits for your orders with caution.](else-if:$path is "cautious")[Gamma-4-A:"Don't hesitate commander"
+
+The rest of the team waits for your orders. Don't make them wait.](else-if:$path is "prudent")[Gamma-4-A:"We will follow you commander"
+
+The rest of the team waits for your orders.](else-if:$path is "reckless")[Gamma-4-A:"Don't risk it commander, just finish the mission"
+
+The rest of the team waits for your orders, they know how unpredictible you are.](if:$hasClue is true)[
+You hear a beep coming from your belt, you look down and see the control making the sound.
+
+An idea pops in your head, you can use it and maybe it will turn the machine off.
+
+[[Use control]]]
+[[Destroy it]] 
+
+
+:: Kill it fast (Disciplined) [Outcome] {"position":"1100,600","size":"100,100"}
+(if:$path is "discipline")[Without thinking twice you approach the monster, using a knife you cut the monsters throat open in a single movement.
+
+The monster whines in pain for a second before finally dying, its body collapsing completely, it is for the best to not second doubt your decisions.](else-if:$path is "reckless")[Without thinking twice you approach the monster, using a knife you stab the monster in the head, blood shoots from the wound to your face. It was best to kill it fast and not risk it attacking again.
+
+The monster dies inmediately.(set:$path to "risk-taker")](else-if:$path is "risk-taker")[You approach the monster, using a knife you cut the monsters throat open in a single movement.
+
+The monster whines in pain for a second before finally dying, its body collapsing completely.(set:$path to "discipline")](else-if:$path is "cautious")[You grab your knife and slowly get close to the monsters back, stabbing him in the back of the neck.
+
+The monster whines in pain for a second before finally dying, its body collapsing completely. It is for the best, you can't risk it recovering and attacking again.(set:$path to "prudent")]
+
+Your team is treating the wounds and loading the weapons. Once everyone is back on their feet you look around, finding a tree tall enough to help you see around if you climb it.(if:$canInvestigate is true)[
+
+You also noticed a metal piece attached to the monsters back. You can try investigate it.
+
+[[Investigate the monster]]
+](if:$canInvestigate is false)[You notice a metal piece attached to the monsters back, sadly that part was damaged with the granade.
+
+][[Climb the tree]]
+
+
+:: Leave it agonizing (Reckless) [Outcome] {"position":"1100,800","size":"100,100"}
+(if:$path is "discipline")[You know you need to finish your mission fast, killing the monster will just slow you down.(set:$path to "risk-taker")](else-if:$path is "reckless")[You don't see the monster as a threat anymore, you ignore the monster and leave it agonizing.(set:$path to "reckless")](else-if:$path is "cautious")[You look at the monster and doubt if you should kill it, it is wounded enough to not be a threat anymore for you and your team.(set:$path to "daring")](else-if:$path is "risk-taker")[You look at the monster, it is no longer a threat and not worth any more of your time. You just turn around and walk away from it.(set:$path to "reckless")]
+
+Your team looks at you leaving the monster alive and agonizing.They are not sure anymore if you're taking the best decisions. 
+
+You look at your squad regrouping, treating their wounds and loading the weapons with ammo. Once everyone is back on their feet you look around, the monsters painful whines in the background, stopping when you see a tree tall enough to help you see around.
+
+[[Climb the tree]] 
+(set:$doubt to true)
+(set:$monsterAlive to true)
+
+
+:: Send one of your team to investigate them (Reckless) [Outcome] {"position":"1900,300","size":"100,100"}
+(if:$path is "discipline")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
+
+Everything looks peaceful until one of the deers attacks the soldier, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "risk-taker")](else-if:$path is "rist-taker")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
+
+You: "See? Everything is fine"
+
+As soon as you say that the deer attacks the soldier, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "reckless")](else-if:$path is "daring")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with the hand extended towards them, the deer sniff the soldier hands.
+
+You: "I told you all that this was a good idea"
+
+The soldier tried to pet the deer, but the deer attacked him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.
+
+Gamma-4-A: "I knew we can't trust you"
+
+The team has little to none trust on you now.(set:$path to "reckless")](else-if:$path is "cautious")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers slowly and with caution, his hand extended towards them, one of the deer sniffs the soldier hands.
+
+Gamma-4-E: "Wow, they are actually frie-"
+
+Before he could finish the deer attacks him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "daring")](else-if:$path is "prudent")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E approaches the deers with caution, his hand extended towards them, one of the deer sniffs the soldier hands. You watch the interaction happen in case something goes wrong.
+
+Gamma-4-E: "Wow, they are actually frie-"
+
+Before he could finish the deer attacks him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.(set:$path to "risk-taker")](else-if:$path is "reckless")[You command Gamma-4-E to approach the deers, maybe they're just friendly after all.
+
+Gamma-4-E: "I won't come close to those things"
+
+You: "It's an order soldier"
+
+With resignation the soldier walks slowly to the deers, theres something in them that scares him.
+
+He couldn't even get that close before the deers attacked him, the antlers stabbing him and comming out trough his back.
+
+The rest of the team shoots at the deers killing them. Running towards the soldier just to see him give one last breath.
+
+Gamma-4-A: "I knew we can't trust you"
+
+The team has little to none trust on you now.(set:$path to "reckless")]
+
+The soldiers turn around and look at you with resentment, it was your order that killed him, you knew that this place isn't safe.
+
+You just command the team to move on. (set:$doubt to true)(if:$teamNumbers is "5")[(set:$teamNumbers to "4")](else-if:$teamNumbers is "4")[(set:$teamNumbers to "3")]
+
+[[Keep walking to the light]] 
+
+
+:: Tackle the monster [Outcome] {"position":"700,300","size":"100,100"}
+You know there isn't much time to think. With resolution you sprint and tackle the monster, succesfully moving it away from your teammate.
+
+Because you acted so sudenly your team didn't cease fire in time. A bullet hits your thigh.
+
+Your squad ceases fire and with the monster now under you, 2 soldiers run towards you and help keep the monster down, one of them pulling a knife and stabbing the monster repeatedly in the chest area.
+
+The monster pushes the 3 of you away but doesn't get up, staying in the ground agonizing and bleeding out.
+
+The rest of the task force reunites and treats your wounds, you know you can't move fast anymore.
+
+Your team is amazed your discipline and fast thinking.
+
+[[You stare at the monster]] 
+
+(set:$path to "risk-taker")
+(set: $wounded to true)
+(set:$canInvestigate to true)
+
+
+:: Use a grenade [Outcome] {"position":"700,500","size":"100,100"}
+You don't think it twice and quickly grab a granade from your belt and throw it to the monster.
+
+The granade lands right by your teammate side and explodes. A slight cloud of dust covers the area, you and your squad can't see trough it.
+
+Once the dust clears you and your team see the monster in the floor with multiple wounds, whinning in pain and bleeding out.
+
+The soldier lays beside it, theres no clear sign of him being alive.
+
+The rest of the squad stares at you, some of them with shock and doubt, some in disbelief you would act so recklessly.
+
+You?
+
+[[You stare at the monster]] 
+
+(set: $teamNumbers to "4")
+(set: $path to "reckless")
+(set:$canInvestigate to false)
+
+
+:: Use control [Outcome] {"position":"2300,600","size":"100,100"}
+You grab the control and push the 'Off' button, the machine immediately shuts down and stops glowing, compressing itself into a tiny metal, you take it and bring it with you to give it to the superiors, one last portal opens directly to the base.
+
+[<img src = "https://geekestateblog.com/wp-content/uploads/2020/04/portal.jpg">]
+
+(if:$path is "discipline")[You guide your team across the portal, closing once the last one of them has crossed to the other side.
+
+They cheer and scream, they survived because of your good discipline.](else-if:$path is "risk-taker")[You guide your team across the portal some of your team running fast towards it, the portal closes once the last one of them has crossed to the other side.](else-if:$path is "daring")[Your team doesn't wait and runs to the portal, they don't want to risk it anymore, you follow them fast, the portal closing right after you cross it.](else-if:$path is "cautious")[You examine the portal to see if its safe, it is slowly closing.
+
+Your team sees it and runs towards it, they don't want to stay any longer in this awful place. When you see them run you follow, barely crossing to the other side.](else-if:$path is "prudent")[You examine the portal to see if its safe, you realize it is safe and command the team through it.](else-if:$path is "reckless")[The team rushes to the portal leaving you behind, you follow behind. The portal closing after you cross it.
+
+The team looks at you with resentment, you know they will never forgive you with how reckless you acted.]
+(if:$wounded is true)[
+You walk away slowly to the base infirmary to get the wound treated correctly before giving your report.
+
+Once you get medicine and a clean bandage you walk back to the team to meet with the superiors.
+]
+Superior: "Follow us commander, its time you give us the mission report"
+
+[[Follow]]
+(set:$hasMachine to true)
+
+
+:: You stare at the monster [Main-Event] {"position":"900,700","size":"100,100"}
+The tension starts to fade away.(if:$wounded is true)[
+
+You can feel the pain in your leg when you get up.
+
+]The monster keeps whining in the background, slowly bleeding out. You are staring at it since the battle finished, thinking on what to do next.
+
+(if:$path is "reckless")[Your team see you doubt, they're still in disbelief you sacrified one of your own to deal with the monster, they aren't sure if you will act reckless again.](if:$path is "risk-taker")[Gamma-4-C: "Thank you for saving me commander"
+
+The soldier looks greatful towards you, he knows you took a calculated risk to save his life.](if:$path is "discipline")[Gamma-4-C: "I didn't tought the monsters could be this clever to surprise attack us"
+
+The rest of the team nods, they stare at you waiting for the next commands.](if:$firstChoice is "cautious")[You walk towards the monster and retreat your knife, you know you will need it in the future.]
+
+Would you end the monster suffering and kill it in an act of mercy, or leave it to agonize until it dies?
+
+[[Kill it fast (Disciplined)]]
+[[Leave it agonizing (Reckless)]]
